@@ -5,11 +5,7 @@ function factorial(n) {
     for (let i = n-1; i > 0; i--) {
       n *= i
      } 
-  return n
-  } else if (n === 0) {
-      n = 1
-      return n
-  } else {
-      return console.log('факториалом может быть только неотрицательное целое число!')
-  }
+     return n;
+  } 
+ return 1;
 }
