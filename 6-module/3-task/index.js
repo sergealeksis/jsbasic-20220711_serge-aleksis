@@ -22,7 +22,7 @@ export default class Carousel {
   `);
 
   let slides = this.slides.map(e => createElement (`
-  <div class="carousel__slide" data-id="${e.name}">
+  <div class="carousel__slide" data-id="${e.id}">
     <img src="/assets/images/carousel/${e.image}" class="carousel__img" alt="slide">
       <div class="carousel__caption">
         <span class="carousel__price">€${e.price.toFixed(2)}</span>
