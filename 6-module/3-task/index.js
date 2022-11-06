@@ -5,6 +5,8 @@ export default class Carousel {
     this.slides = slides;
     this.render();    
     this.initCarousel();
+    this.addEventListeners();
+
   }
 
   render() {
@@ -66,19 +68,20 @@ export default class Carousel {
 
       return toMove.style.transform = `translateX(${-(position -= toMove.offsetWidth)}px)`;
     };
-    
-    
-    this.elem.onclick = (event) => {
-      let target = event.target;
-      let bttn = target.closest('.carousel__button');
-      if(bttn) {
+  };  
+
+    addEventListeners() {
+      this.elem.onclick = ({target}) => {
+        let button = target.closest('.carousel__button');
+        if (button) {
           let id = target.closest('[data-id]').dataset.id;
+  
           this.elem.dispatchEvent(new CustomEvent('product-add', {
             detail: id,
             bubbles: true
           }));
+        }
+      }
     };
-}
-};
-
+  
 }
