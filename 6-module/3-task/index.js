@@ -5,8 +5,7 @@ export default class Carousel {
     this.slides = slides;
     this.render();    
     this.initCarousel();
-    this.addEventListeners();
-
+    this.onPlusClick();
   }
 
   render() {
@@ -70,18 +69,21 @@ export default class Carousel {
     };
   };  
 
-    addEventListeners() {
-      this.elem.onclick = ({target}) => {
-        let button = target.closest('.carousel__button');
-        if (button) {
-          let id = target.closest('[data-id]').dataset.id;
-  
-          this.elem.dispatchEvent(new CustomEvent('product-add', {
-            detail: id,
-            bubbles: true
-          }));
+    onPlusClick() {
+      this.elem.onclick = (event) => {
+        let plusButton = event.target.closest('.carousel__button');
+        if (plusButton) {
+          let id = event.target.closest('[data-id]').dataset.id;
+
+          const productAdd = new CustomEvent('product-add', {
+            bubbles: true,
+            detail: id
+          });
+
+          this.elem.dispatchEvent(productAdd);
         }
+        
       }
-    };
-  
+}
+
 }
